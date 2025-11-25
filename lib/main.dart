@@ -12,14 +12,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeViewmodel = HomeViewmodel();
     return ChangeNotifierProvider(
       create: (context) => HomeViewmodel(),
       child: MaterialApp(
         title: 'Gestion Bar',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: const Color.fromARGB(255, 245, 142, 57),
         ),
-        home: const MyHomePage(title: 'Gestion Bar Home Page'),
+        home: MyHomePage(title: 'Cervecería Folks', homeViewmodel: homeViewmodel),
       ),
     );
   }
