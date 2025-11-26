@@ -1,13 +1,13 @@
+import 'pedido_item.dart';
+
 class Pedido {
+  String nombreMesa;
+  List<PedidoItem> items;
 
-  String nombreMesa = '';
-  int numeroProductos = 0;
-  double precioTotal = 0.0;
+  Pedido({required this.nombreMesa, List<PedidoItem>? items})
+    : items = items ?? [];
 
-  Pedido({
-    required this.nombreMesa,
-    required this.numeroProductos,
-    required this.precioTotal,
-  });
+  int get numeroProductos => items.fold(0, (sum, it) => sum + it.cantidad);
 
+  double get precioTotal => items.fold(0.0, (sum, it) => sum + it.subtotal);
 }

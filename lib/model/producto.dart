@@ -1,6 +1,6 @@
 class Producto {
-  String nombre = '';
-  double precio = 0.0;
+  final String nombre ;
+  final double precio;
 
   Producto({
     required this.nombre,
