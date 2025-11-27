@@ -1,7 +1,6 @@
 import 'package:gestion_bar/model/pedido_item.dart';
 import 'package:gestion_bar/model/producto.dart';
 import '../model/pedido.dart';
-import 'package:flutter/material.dart';
 
 class HomeViewmodel {
   final List<Pedido> _pedidos = [];

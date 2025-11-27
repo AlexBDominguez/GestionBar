@@ -28,12 +28,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           );
 
-          // Comprobar mounted antes de setState
           if (!mounted) return;
 
           if (nuevo != null) {
             widget.homeViewmodel.addPedido(nuevo);
-            setState(() {}); // actualizamos vista
+            setState(() {}); 
           }
         },        
         tooltip: 'Nuevo pedido',

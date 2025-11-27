@@ -17,9 +17,15 @@ class ResumenPedidoView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Mesa / Nombre: ${pedido.nombreMesa}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text(
+              'Mesa / Nombre: ${pedido.nombreMesa}',
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 12),
-            const Text('Productos:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+            const Text(
+              'Productos:',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            ),
             const SizedBox(height: 6),
             Expanded(
               child: ListView.separated(
@@ -36,7 +42,13 @@ class ResumenPedidoView extends StatelessWidget {
               ),
             ),
             const Divider(),
-            Text('Total: ${pedido.precioTotal.toStringAsFixed(2)} €', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                'Total: ${pedido.precioTotal.toStringAsFixed(2)} €',
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
             const SizedBox(height: 12),
             Center(
               child: ElevatedButton(

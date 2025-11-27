@@ -38,8 +38,8 @@ class _SeleccionarProductosViewState extends State<SeleccionarProductosView> {
                 return ListTile(
                   title: Text(producto.nombre),
                   subtitle: Text("${producto.precio.toStringAsFixed(2)} €"),
-                  trailing: yaSeleccionado
-                      ? Row(
+                  trailing: yaSeleccionado? 
+                  Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             IconButton(
@@ -95,7 +95,6 @@ class _SeleccionarProductosViewState extends State<SeleccionarProductosView> {
               ),
             ],
           ),
-
           const SizedBox(height: 50),
         ],
       ),

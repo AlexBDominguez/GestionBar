@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_bar/view/resumen_pedido_final.dart';
 import '../viewmodel/home_viewmodel.dart';
 import '../model/pedido.dart';
 import '../model/pedido_item.dart';
@@ -16,8 +17,10 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
   final TextEditingController _mesaController = TextEditingController();
   List<PedidoItem> _itemsSeleccionados = [];
 
-  double get _total => _itemsSeleccionados.fold(0.0, (s, it) => s + it.subtotal);
-  int get _numeroProductos => _itemsSeleccionados.fold(0, (s, it) => s + it.cantidad);
+  double get _total =>
+      _itemsSeleccionados.fold(0.0, (s, it) => s + it.subtotal);
+  int get _numeroProductos =>
+      _itemsSeleccionados.fold(0, (s, it) => s + it.cantidad);
 
   @override
   void dispose() {
@@ -29,9 +32,8 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
     final resultado = await Navigator.push<List<PedidoItem>?>(
       context,
       MaterialPageRoute(
-        builder: (_) => SeleccionarProductosView(
-          catalogo: widget.homeViewmodel.productos, 
-        ),
+        builder: (_) =>
+            SeleccionarProductosView(catalogo: widget.homeViewmodel.productos),
       ),
     );
 
@@ -47,13 +49,17 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
   Future<void> _verResumen() async {
     if (_itemsSeleccionados.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No hay productos para mostrar en el resumen.')),
+        const SnackBar(
+          content: Text('No hay productos para mostrar en el resumen.'),
+        ),
       );
       return;
     }
     if (_mesaController.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Introduce nombre de mesa antes de ver resumen.')),
+        const SnackBar(
+          content: Text('Introduce nombre de mesa antes de ver resumen.'),
+        ),
       );
       return;
     }
@@ -62,10 +68,11 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
       nombreMesa: _mesaController.text.trim(),
       items: List.from(_itemsSeleccionados),
     );
+
     await Navigator.pushNamed(context, '/resumen', arguments: pedidoTemp);
 
     if (!mounted) return;
-    setState(() {}); 
+    setState(() {});
   }
 
   void _guardarPedido() {
@@ -79,7 +86,10 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
       return;
     }
 
-    final pedido = Pedido(nombreMesa: nombre, items: List.from(_itemsSeleccionados));
+    final pedido = Pedido(
+      nombreMesa: nombre,
+      items: List.from(_itemsSeleccionados),
+    );
     Navigator.pop(context, pedido);
   }
 
@@ -90,7 +100,10 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
         title: const Text('Validación'),
         content: Text(mensaje),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('OK')),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('OK'),
+          ),
         ],
       ),
     );
@@ -99,9 +112,7 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Crear Pedido'),
-      ),
+      appBar: AppBar(title: const Text('Crear Pedido')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -117,7 +128,9 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
 
             Row(
               children: [
-                Expanded(child: Text('Productos seleccionados: $_numeroProductos')),
+                Expanded(
+                  child: Text('Productos seleccionados: $_numeroProductos'),
+                ),
                 ElevatedButton(
                   onPressed: _irSeleccionProductos,
                   child: const Text('Añadir productos'),
@@ -137,7 +150,9 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
                         final it = _itemsSeleccionados[i];
                         return ListTile(
                           title: Text(it.producto.nombre),
-                          subtitle: Text('${it.producto.precio.toStringAsFixed(2)} € x ${it.cantidad}'),
+                          subtitle: Text(
+                            '${it.producto.precio.toStringAsFixed(2)} € x ${it.cantidad}',
+                          ),
                           trailing: Text('${it.subtotal.toStringAsFixed(2)} €'),
                         );
                       },
@@ -167,21 +182,23 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
                 ),
               ],
             ),
-            
+
             const Divider(),
-            
             SizedBox(
-              height: 100, 
+              height: 100,
               child: Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8.0), 
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center, 
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Align(
-                      alignment: Alignment.center, 
+                      alignment: Alignment.center,
                       child: Text(
-                        'Total: ${_total.toStringAsFixed(2)} €', 
-                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)
+                        'Total: ${_total.toStringAsFixed(2)} €',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
