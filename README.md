@@ -1,16 +1,28 @@
-# gestion_bar
+# Folks Cervecería - Práctica de Navegación
 
-A new Flutter project.
+## Descripción del Proyecto
 
-## Getting Started
+Aplicación de gestión de mesas y pedidos de una cervecería desarrollada con **Flutter**. Permite mostrar listado de mesas con productos y precio total. También, la creación de mesas nuevas a la que se les puede añadir productos.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Tecnologías Usadas
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Flutter** : 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Características Principales
+
+### ➡️ Funcionalidades Implementadas
+
+### 1. Gestión de Pedidos
+
+- Crear pedido (nombre, botón de añadir productos)
+- Número de productos seleccionados
+- Preview de productos seleccionados y precio total
+- Posibilidad de ver resumen
+- Elección de guardar pedido o cancelarlo
+
+### 2. Gestión de Productos
+
+- Añadir productos de una lista predeterminada
+- Posibilidad de escoger varias unidades de diferentes productos antes de confirmar
+ 
