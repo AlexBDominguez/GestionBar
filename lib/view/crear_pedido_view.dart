@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gestion_bar/view/resumen_pedido_final.dart';
 import '../viewmodel/home_viewmodel.dart';
 import '../model/pedido.dart';
 import '../model/pedido_item.dart';
 import 'seleccion_productos.dart';
+
+
+///Vista que permite crear un nuevo pedido, definiendo la mesa/nombre
+/// y los productos seleccionados.
 
 class CrearPedidoView extends StatefulWidget {
   final HomeViewmodel homeViewmodel;
@@ -17,6 +20,8 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
   final TextEditingController _mesaController = TextEditingController();
   List<PedidoItem> _itemsSeleccionados = [];
 
+
+  /// Calcula el precio total del pedido basado en los items seleccionados.
   double get _total =>
       _itemsSeleccionados.fold(0.0, (s, it) => s + it.subtotal);
   int get _numeroProductos =>
@@ -28,6 +33,7 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
     super.dispose();
   }
 
+/// Navega a la vista de selección de productos y actualiza los items seleccionados.
   Future<void> _irSeleccionProductos() async {
     final resultado = await Navigator.push<List<PedidoItem>?>(
       context,
@@ -37,6 +43,7 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
       ),
     );
 
+///Verifica si la vista sigue montada antes de actualizar el estado.
     if (!mounted) return;
 
     if (resultado != null) {
@@ -46,7 +53,9 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
     }
   }
 
+  /// Navega a la vista de resumen del pedido.
   Future<void> _verResumen() async {
+    /// Validaciones antes de mostrar el resumen.
     if (_itemsSeleccionados.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -75,6 +84,7 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
     setState(() {});
   }
 
+/// Valida y guarda el pedido, retornándolo a la vista anterior.
   void _guardarPedido() {
     final nombre = _mesaController.text.trim();
     if (nombre.isEmpty) {
@@ -93,6 +103,7 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
     Navigator.pop(context, pedido);
   }
 
+/// Muestra una alerta con el mensaje proporcionado.
   void _showAlert(String mensaje) {
     showDialog(
       context: context,
@@ -109,6 +120,7 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
     );
   }
 
+/// Construye la interfaz de usuario para crear un pedido.
   @override
   Widget build(BuildContext context) {
     return Scaffold(

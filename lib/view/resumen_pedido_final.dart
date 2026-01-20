@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../model/pedido.dart';
 import '../model/pedido_item.dart';
 
+/// Vista que muestra el resumen de un pedido creado.
 class ResumenPedidoView extends StatelessWidget {
   final Pedido pedido;
   const ResumenPedidoView({super.key, required this.pedido});
@@ -27,6 +28,7 @@ class ResumenPedidoView extends StatelessWidget {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 6),
+            /// Lista de items del pedido.
             Expanded(
               child: ListView.separated(
                 itemCount: pedido.items.length,

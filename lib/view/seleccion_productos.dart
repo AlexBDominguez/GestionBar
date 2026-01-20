@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../model/producto.dart';
 import '../model/pedido_item.dart';
 
+
+/// Vista que permite seleccionar productos para un pedido.
 class SeleccionarProductosView extends StatefulWidget {
   final List<Producto> catalogo;
   const SeleccionarProductosView({super.key, required this.catalogo});
@@ -11,6 +13,7 @@ class SeleccionarProductosView extends StatefulWidget {
 }
 
 class _SeleccionarProductosViewState extends State<SeleccionarProductosView> {
+  /// Lista de items seleccionados para el pedido.
   final List<PedidoItem> seleccionados = [];
 
   @override
@@ -29,6 +32,7 @@ class _SeleccionarProductosViewState extends State<SeleccionarProductosView> {
               itemBuilder: (context, index) {
                 final producto = productosDisponibles[index];
 
+                /// Verifica si el producto ya ha sido seleccionado.
                 final idx = seleccionados.indexWhere(
                   (it) => it.producto.nombre == producto.nombre,
                 );
@@ -78,6 +82,7 @@ class _SeleccionarProductosViewState extends State<SeleccionarProductosView> {
             ),
           ),
 
+          /// Botones para cancelar o confirmar la selección.   
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
