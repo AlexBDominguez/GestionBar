@@ -7,7 +7,7 @@ Aplicación de gestión de mesas y pedidos de una cervecería desarrollada con *
 
 ## Tecnologías Usadas
 
-- **Flutter** : 
+- **Flutter** : Framework de Google para el desarrollo de aplicaciones multiplataforma (iOS y Android) utilizando el lenguaje Dart.
 
 ## Características Principales
 
